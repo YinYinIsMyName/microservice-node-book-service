@@ -4,6 +4,6 @@ const bookRouter = require('./routes.book')
 const route = express.Router()
 
 route.use('/auth',authenticationRouter)
-route.use('/book',bookRouter)
+route.use('/',bookRouter)
 
 module.exports = route

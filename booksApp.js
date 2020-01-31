@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const helmet = require('helmet')
 const morgan = require('morgan')
+const eurekaHelper = require('./eureka-helper')
 require('dotenv').config()
 
 const PORT = process.env.Book_PORT
@@ -27,7 +28,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/api/v1',booksAppRouter)
+app.use('/',booksAppRouter)
 app.listen(PORT,()=>{
  console.log(`The books service is running on ${PORT}`)
 })
+eurekaHelper.registerWithEureka('book-service', PORT);
